@@ -50,8 +50,8 @@ export const ContactSection: React.FC = () => {
         <div className="mb-12">
           <h2 className="mb-4">Get In Touch</h2>
           <p className="text-secondary leading-relaxed max-w-2xl">
-            Let&apos;s discuss your next project or collaboration opportunity. 
-            I&apos;m always excited to work on interesting challenges.
+            Let{String.fromCharCode(39)}s discuss your next project or collaboration opportunity. 
+            I{String.fromCharCode(39)}m always excited to work on interesting challenges.
           </p>
         </div>
 

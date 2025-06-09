@@ -54,9 +54,9 @@ export const AboutSection: React.FC = () => {
         <div className="mb-12">
           <h2 className="mb-4">About Me</h2>
           <p className="text-secondary leading-relaxed max-w-3xl">
-            I&apos;m a passionate full-stack developer with over 3 years of experience building 
+            I{String.fromCharCode(39)}m a passionate full-stack developer with over 3 years of experience building 
             modern web applications. I love creating digital experiences that make a difference 
-            in people&apos;s lives, combining technical expertise with thoughtful design.
+            in people{String.fromCharCode(39)}s lives, combining technical expertise with thoughtful design.
           </p>
         </div>
 
@@ -81,8 +81,8 @@ export const AboutSection: React.FC = () => {
         <div className="mb-16">
           <h3 className="font-semibold mb-6">Experience</h3>
           <div className="space-y-6">
-            {experience.map((job, index) => (
-              <div key={index} className="border-l-2 border-border-light pl-6 relative">
+            {experience.map((job) => (
+              <div key={job.title} className="border-l-2 border-border-light pl-6 relative">
                 <div className="absolute w-2 h-2 bg-accent rounded-full -left-1 top-2"></div>
                 <div className="flex items-start justify-between mb-2">
                   <div>
