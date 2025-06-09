@@ -1,6 +1,6 @@
-# Cyber Portfolio
+# Modern Portfolio
 
-サイバーパンク風のモダンなポートフォリオサイト
+Notion風のクリーンでシンプルなポートフォリオサイト
 
 ## 🚀 技術スタック
 
@@ -13,12 +13,13 @@
 
 ## 📋 機能
 
-- ✨ サイバーパンク風のビジュアルデザイン
-- 🎨 ネオンエフェクト・グロー効果
+- ✨ Notion風のクリーンなデザイン
+- 📖 読みやすいタイポグラフィ
 - 📝 Qiita記事の自動取得・表示
 - 📱 完全レスポンシブ対応
 - ⚡ 高速パフォーマンス (Lighthouse 90+)
 - ♿ アクセシビリティ対応
+- 🚀 Vercel自動デプロイ & CI/CD
 
 ## 🛠️ セットアップ
 
@@ -35,7 +36,7 @@ npm install
 
 3. 環境変数を設定
 ```bash
-cp .env.local.example .env.local
+cp .env.example .env.local
 ```
 
 `.env.local`ファイルを編集し、以下の値を設定:
@@ -85,13 +86,25 @@ cyber-portfolio/
 
 ## 🚀 デプロイ
 
-Vercelへのデプロイ:
+### Vercelへの自動デプロイ
 
-1. [Vercel](https://vercel.com)にログイン
-2. 「New Project」をクリック
-3. GitHubリポジトリを選択
-4. 環境変数を設定
-5. 「Deploy」をクリック
+このプロジェクトはCI/CDパイプラインが設定されています：
+
+1. **初回セットアップ**: [DEPLOYMENT.md](./DEPLOYMENT.md) を参照
+2. **自動デプロイ**: `main`ブランチへのpushで自動実行
+3. **PR確認**: Pull Request作成時に自動チェック
+
+### 手動デプロイ
+
+```bash
+# Vercel CLI使用
+npm run vercel:deploy
+
+# または直接
+vercel --prod
+```
+
+詳細は [DEPLOYMENT.md](./DEPLOYMENT.md) をご覧ください。
 
 ## 📝 ライセンス
 

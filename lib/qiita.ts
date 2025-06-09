@@ -16,10 +16,13 @@ export const fetchQiitaArticles = async (username: string): Promise<QiitaArticle
       }
     );
     return response.data;
-  } catch (error: any) {
-    if (error.response?.status === 404) {
-      console.error(`Qiita user "${username}" not found`);
-      return [];
+  } catch (error: unknown) {
+    if (error && typeof error === 'object' && 'response' in error) {
+      const axiosError = error as { response?: { status?: number } };
+      if (axiosError.response?.status === 404) {
+        console.error(`Qiita user "${username}" not found`);
+        return [];
+      }
     }
     console.error('Qiita API Error:', error);
     return [];

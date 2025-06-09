@@ -1,39 +1,14 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from '@/hooks/useInView';
-import { Send, Mail, MapPin, Phone, Github, Linkedin, Twitter } from 'lucide-react';
+import { Send, Mail, Github, Twitter } from 'lucide-react';
 
 export const ContactSection: React.FC = () => {
-  const { ref, isInView } = useInView();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: ''
   });
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.25, 0.1, 0.25, 1],
-      },
-    },
-  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -48,178 +23,150 @@ export const ContactSection: React.FC = () => {
     console.log('Form submitted:', formData);
   };
 
-  const contactInfo = [
-    {
-      icon: Mail,
-      label: 'Email',
-      value: 'your.email@example.com',
-      href: 'mailto:your.email@example.com'
-    },
-    {
-      icon: MapPin,
-      label: 'Location',
-      value: 'Tokyo, Japan',
-      href: null
-    },
-    {
-      icon: Phone,
-      label: 'Phone',
-      value: '+81 XX-XXXX-XXXX',
-      href: 'tel:+81XXXXXXXXXX'
-    }
-  ];
-
   const socialLinks = [
     {
       icon: Github,
       label: 'GitHub',
-      href: 'https://github.com/yourusername'
-    },
-    {
-      icon: Linkedin,
-      label: 'LinkedIn',
-      href: 'https://linkedin.com/in/yourusername'
+      href: 'https://github.com/yourusername',
+      color: 'text-primary'
     },
     {
       icon: Twitter,
-      label: 'Twitter',
-      href: 'https://twitter.com/yourusername'
+      label: 'X',
+      href: 'https://x.com/yourusername',
+      color: 'text-accent'
+    },
+    {
+      icon: Mail,
+      label: 'Email',
+      href: 'mailto:your.email@example.com',
+      color: 'text-secondary'
     }
   ];
 
   return (
-    <section id="contact" className="section bg-bg-primary">
+    <section className="section" id="contact">
       <div className="container">
-        <motion.div
-          ref={ref}
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-        >
-          <motion.div variants={itemVariants} className="text-center mb-20">
-            <h2 className="mb-6">Get In Touch</h2>
-            <p className="text-xl text-text-secondary max-w-2xl mx-auto leading-relaxed">
-              Let's discuss your next project or collaboration opportunity.
-              I'm always excited to work on interesting challenges.
-            </p>
-          </motion.div>
+        <div className="mb-12">
+          <h2 className="mb-4">Get In Touch</h2>
+          <p className="text-secondary leading-relaxed max-w-2xl">
+            Let&apos;s discuss your next project or collaboration opportunity. 
+            I&apos;m always excited to work on interesting challenges.
+          </p>
+        </div>
 
-          <div className="grid lg:grid-cols-2 gap-12">
-            <motion.div variants={itemVariants} className="space-y-8">
-              <h3 className="text-2xl font-semibold mb-6">Let's talk</h3>
-              
-              <div className="space-y-6">
-                {contactInfo.map((info) => (
-                  <div key={info.label} className="flex items-center gap-4">
-                    <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 border border-primary/20">
-                      <info.icon className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <p className="text-sm text-text-secondary">{info.label}</p>
-                      {info.href ? (
-                        <a 
-                          href={info.href}
-                          className="font-medium hover:text-primary transition-colors"
-                        >
-                          {info.value}
-                        </a>
-                      ) : (
-                        <p className="font-medium">{info.value}</p>
-                      )}
-                    </div>
-                  </div>
+        <div className="grid grid-cols-2 gap-12">
+          <div>
+            <h3 className="font-semibold mb-6">Contact Information</h3>
+            
+            <div className="space-y-4 mb-8">
+              <div className="flex items-center gap-3">
+                <Mail className="w-4 h-4 text-secondary" />
+                <div>
+                  <div className="text-sm text-secondary">Email</div>
+                  <a href="mailto:your.email@example.com" className="text-accent">
+                    your.email@example.com
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="mb-8">
+              <h4 className="font-medium mb-4">Connect with me</h4>
+              <div className="flex gap-3">
+                {socialLinks.map((social) => (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-ghost"
+                    aria-label={social.label}
+                  >
+                    <social.icon className="w-4 h-4" />
+                    <span>{social.label}</span>
+                  </a>
                 ))}
               </div>
+            </div>
 
-              <div className="pt-8">
-                <h4 className="text-lg font-semibold mb-4">Follow me</h4>
-                <div className="flex gap-4">
-                  {socialLinks.map((social) => (
-                    <a
-                      key={social.label}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={social.label}
-                      className="social-link w-10 h-10 p-0"
-                    >
-                      <social.icon className="w-5 h-5" />
-                    </a>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div variants={itemVariants}>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium mb-2">
-                    Name *
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-bg-secondary border border-border-light rounded-lg focus:outline-none focus:border-primary transition-colors"
-                    placeholder="Your name"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-2">
-                    Email *
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-bg-secondary border border-border-light rounded-lg focus:outline-none focus:border-primary transition-colors"
-                    placeholder="your.email@example.com"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium mb-2">
-                    Message *
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    required
-                    rows={6}
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-bg-secondary border border-border-light rounded-lg focus:outline-none focus:border-primary transition-colors resize-none"
-                    placeholder="Tell me about your project..."
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="btn btn-primary w-full inline-flex items-center justify-center gap-2"
-                >
-                  Send Message
-                  <Send className="w-4 h-4" />
-                </button>
-              </form>
-            </motion.div>
+            <div className="card">
+              <h4 className="font-medium mb-3">Quick Response</h4>
+              <p className="text-sm text-secondary">
+                I typically respond to emails within 24 hours. For urgent matters, 
+                feel free to reach out on X.
+              </p>
+            </div>
           </div>
 
-          <motion.div
-            variants={itemVariants}
-            className="mt-20 pt-8 border-t border-border-light text-center"
-          >
-            <p className="text-text-secondary text-sm">
-              © 2024 Your Name. Built with Next.js, TypeScript, and Tailwind CSS.
-            </p>
-          </motion.div>
-        </motion.div>
+          <div>
+            <h3 className="font-semibold mb-6">Send a Message</h3>
+            
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium mb-2">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  className="w-full px-3 py-2 border border-border-light rounded-md bg-bg-primary text-primary focus:outline-none focus:border-accent transition-colors"
+                  placeholder="Your name"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium mb-2">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  className="w-full px-3 py-2 border border-border-light rounded-md bg-bg-primary text-primary focus:outline-none focus:border-accent transition-colors"
+                  placeholder="your.email@example.com"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium mb-2">
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  required
+                  rows={6}
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  className="w-full px-3 py-2 border border-border-light rounded-md bg-bg-primary text-primary focus:outline-none focus:border-accent transition-colors resize-none"
+                  placeholder="Tell me about your project..."
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="btn btn-primary w-full"
+              >
+                <Send className="w-4 h-4" />
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div className="mt-16 pt-8 border-t border-border-light text-center">
+          <p className="text-secondary text-sm">
+            © 2024 Your Name. Built with Next.js, TypeScript, and Tailwind CSS.
+          </p>
+        </div>
       </div>
     </section>
   );
