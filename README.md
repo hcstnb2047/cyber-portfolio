@@ -1,36 +1,102 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Cyber Portfolio
 
-## Getting Started
+サイバーパンク風のモダンなポートフォリオサイト
 
-First, run the development server:
+## 🚀 技術スタック
 
+- **Framework**: Next.js 14 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Animation**: Framer Motion + GSAP
+- **State Management**: SWR
+- **Deployment**: Vercel
+
+## 📋 機能
+
+- ✨ サイバーパンク風のビジュアルデザイン
+- 🎨 ネオンエフェクト・グロー効果
+- 📝 Qiita記事の自動取得・表示
+- 📱 完全レスポンシブ対応
+- ⚡ 高速パフォーマンス (Lighthouse 90+)
+- ♿ アクセシビリティ対応
+
+## 🛠️ セットアップ
+
+1. リポジトリをクローン
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/yourusername/cyber-portfolio.git
+cd cyber-portfolio
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. 依存関係をインストール
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. 環境変数を設定
+```bash
+cp .env.local.example .env.local
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+`.env.local`ファイルを編集し、以下の値を設定:
+- `NEXT_PUBLIC_QIITA_USERNAME`: あなたのQiitaユーザー名
+- `NEXT_PUBLIC_SITE_URL`: デプロイ先のURL
 
-## Learn More
+4. 開発サーバーを起動
+```bash
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 📂 プロジェクト構造
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+cyber-portfolio/
+├── app/                    # Next.js App Router
+├── components/
+│   ├── atoms/             # 最小単位コンポーネント
+│   ├── molecules/         # 機能単位コンポーネント
+│   ├── organisms/         # セクション単位コンポーネント
+│   └── effects/           # サイバーエフェクト
+├── hooks/                 # カスタムフック
+├── lib/                   # ユーティリティ関数
+├── types/                 # TypeScript型定義
+└── public/                # 静的ファイル
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🎨 カスタマイズ
 
-## Deploy on Vercel
+### カラーパレット変更
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+`app/globals.css`の`:root`セクションでカラー変数を編集:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```css
+:root {
+  --primary-blue: #0080FF;
+  --accent-cyan: #00FFFF;
+  --special-purple: #9D00FF;
+}
+```
+
+### コンテンツの編集
+
+- **プロフィール**: `components/organisms/AboutSection.tsx`
+- **スキル**: `components/organisms/SkillsSection.tsx`
+- **SNSリンク**: `components/molecules/SocialLinks.tsx`
+
+## 🚀 デプロイ
+
+Vercelへのデプロイ:
+
+1. [Vercel](https://vercel.com)にログイン
+2. 「New Project」をクリック
+3. GitHubリポジトリを選択
+4. 環境変数を設定
+5. 「Deploy」をクリック
+
+## 📝 ライセンス
+
+MIT License
+
+## 🤝 貢献
+
+プルリクエストは歓迎します。大きな変更の場合は、まずissueを作成して変更内容を議論してください。
